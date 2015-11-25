@@ -3,18 +3,11 @@ package com.amanichristian.agl.osmsandroid;
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 23/11/2015.
  */
-import android.app.Service;
 import android.os.Bundle;
 import android.util.Base64;
-
 import com.squareup.okhttp.Headers;
-import com.squareup.okhttp.RequestBody;
-
 import java.io.IOException;
-import java.util.List;
-
 import retrofit.Call;
-import retrofit.Converter;
 import retrofit.Response;
 import retrofit.Retrofit;
 

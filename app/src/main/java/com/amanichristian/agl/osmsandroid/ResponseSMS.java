@@ -7,6 +7,23 @@ public class ResponseSMS
 {
     private SMSResponse outBoundSMSMessageRequest;
     private String resourceURL;
+
+    public ResponseSMS(SMSResponse outBoundSMSMessageRequest, String resourceURL)
+    {
+        this.outBoundSMSMessageRequest = outBoundSMSMessageRequest;
+        this.resourceURL = resourceURL;
+    }
+
+    public SMSResponse getOutBoundSMSMessageRequest()
+    {
+        return outBoundSMSMessageRequest;
+    }
+
+    public String getResourceURL()
+    {
+        return resourceURL;
+    }
+
     public class SMSResponse
     {
         private String senderAddress;
