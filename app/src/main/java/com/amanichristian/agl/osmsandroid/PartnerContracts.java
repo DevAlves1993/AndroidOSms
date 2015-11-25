@@ -11,6 +11,12 @@ public class PartnerContracts
     private String partnerId;
     private Contract[] contracts;
 
+    public PartnerContracts(String partnerId, Contract[] contracts)
+    {
+        this.partnerId = partnerId;
+        this.contracts = contracts;
+    }
+
     public Contract[] getContracts()
     {
         return contracts;
@@ -26,6 +32,13 @@ public class PartnerContracts
         private String service;
         private String contractDescription;
         private ServiceContracts[] serviceContracts;
+
+        public Contract(String service, String contractDescription, ServiceContracts[] serviceContracts)
+        {
+            this.service = service;
+            this.contractDescription = contractDescription;
+            this.serviceContracts = serviceContracts;
+        }
 
         public ServiceContracts[] getServiceContracts()
         {
@@ -50,6 +63,20 @@ public class PartnerContracts
             private String availableUnits;
             private String expires;
             private String scDescription;
+
+            public ServiceContracts(String country,
+                                    String service,
+                                    String contractId,
+                                    String availableUnits,
+                                    String expires, String scDescription)
+            {
+                this.country = country;
+                this.service = service;
+                this.contractId = contractId;
+                this.availableUnits = availableUnits;
+                this.expires = expires;
+                this.scDescription = scDescription;
+            }
 
             public String getCountry()
             {
