@@ -117,4 +117,18 @@ public final class GenerateService
             return null;
     }
 
+    public HistoricPurchase historicPurchase() throws IOException
+    {
+        ServiceOSms serviceOSms;
+        Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(ServiceOSms.END_POINT)
+                            .build();
+        serviceOSms = retrofit.create(ServiceOSms.class);
+        Call<HistoricPurchase> historicPurchaseCall = serviceOSms.getHistoric(codeEncoded);
+        Response<HistoricPurchase> historicPurchaseResponse = historicPurchaseCall.execute();
+        if(historicPurchaseResponse.isSuccess())
+            return historicPurchaseResponse.body();
+        else
+            return null;
+    }
 }

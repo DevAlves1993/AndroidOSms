@@ -13,6 +13,22 @@ public class PurchaseOrders
     private Inputs[] inputs;
     private OrderExecutionInformation orderExecutionInformation;
 
+    public PurchaseOrders(String purchaseOrderId,
+                          String mode,
+                          String bundleId,
+                          String bundleDescription,
+                          String partnerId,
+                          Inputs[] inputs, OrderExecutionInformation orderExecutionInformation)
+    {
+        this.purchaseOrderId = purchaseOrderId;
+        this.mode = mode;
+        this.bundleId = bundleId;
+        this.bundleDescription = bundleDescription;
+        this.partnerId = partnerId;
+        this.inputs = inputs;
+        this.orderExecutionInformation = orderExecutionInformation;
+    }
+
     public String getPurchaseOrderId()
     {
         return purchaseOrderId;
@@ -54,6 +70,12 @@ public class PurchaseOrders
         private String type;
         private String value;
 
+        public Inputs(String type, String value)
+        {
+            this.type = type;
+            this.value = value;
+        }
+
         public String getType()
         {
             return type;
@@ -73,6 +95,20 @@ public class PurchaseOrders
         private String service;
         private String country;
         private String contractId;
+
+        public OrderExecutionInformation(String date,
+                                         String amount,
+                                         String currency,
+                                         String service,
+                                         String country, String contractId)
+        {
+            this.date = date;
+            this.amount = amount;
+            this.currency = currency;
+            this.service = service;
+            this.country = country;
+            this.contractId = contractId;
+        }
 
         public String getDate()
         {

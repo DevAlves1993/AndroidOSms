@@ -32,4 +32,7 @@ public interface ServiceOSms
 
     @GET("/sms/admin/v1/statistics")
     Call<StatisticSMS> getStatistics(@Header("Authorization") String codeEncoded);
+
+    @GET("/sms/admin/v1/purchaseorders")
+    Call<HistoricPurchase> getHistoric(@Header("Authorization") String codeEncoded);
 }
