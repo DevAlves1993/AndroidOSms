@@ -5,6 +5,8 @@ package com.amanichristian.agl.osmsandroid;
  */
 import android.os.Bundle;
 import android.util.Base64;
+
+import com.amanichristian.agl.osmsandroid.Error.ServiceException;
 import com.squareup.okhttp.Headers;
 import java.io.IOException;
 import retrofit.Call;
@@ -34,7 +36,7 @@ public final class GenerateService
 
     }
 
-    public  Token generatedToken() throws IOException
+    public  Token generatedToken() throws IOException,ServiceException
     {
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
@@ -46,10 +48,13 @@ public final class GenerateService
         if(tokenResponse.isSuccess())
             return tokenResponse.body();
         else
-            return null;
+        {
+            ServiceException.launchException(retrofit,tokenResponse);
+            throw new ServiceException(ServiceException.messageError);
+        }
     }
 
-    public ResponseSMS sendSMS(SMS sms,Bundle bundleHeader) throws IOException
+    public ResponseSMS sendSMS(SMS sms,Bundle bundleHeader) throws IOException,ServiceException
     {
         String senderAddress = sms.getOutBoundSMSMessageRequest().getSenderAddress();
         encodedSenderAddress(senderAddress);
@@ -71,7 +76,10 @@ public final class GenerateService
             return responseSMS.body();
         }
         else
-            return null;
+        {
+            ServiceException.launchException(retrofit,responseSMS);
+            throw new ServiceException(ServiceException.messageError);
+        }
     }
 
     private String encodedSenderAddress(String senderAddress)
@@ -80,7 +88,7 @@ public final class GenerateService
         return senderAddress;
     }
 
-    public RemainderSMS remainderSMS() throws IOException
+    public RemainderSMS remainderSMS() throws IOException,ServiceException
     {
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
@@ -92,10 +100,13 @@ public final class GenerateService
         if(listResponse.isSuccess())
             return listResponse.body();
         else
-            return null;
+        {
+            ServiceException.launchException(retrofit,listResponse);
+            throw new ServiceException(ServiceException.messageError);
+        }
     }
 
-    public StatisticSMS statisticSMS() throws IOException
+    public StatisticSMS statisticSMS() throws IOException, ServiceException
     {
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
@@ -107,10 +118,13 @@ public final class GenerateService
         if(statisticSMSResponse.isSuccess())
             return statisticSMSResponse.body();
         else
-            return null;
+        {
+            ServiceException.launchException(retrofit,statisticSMSResponse);
+            throw new ServiceException(ServiceException.messageError);
+        }
     }
 
-    public HistoricPurchase historicPurchase() throws IOException
+    public HistoricPurchase historicPurchase() throws IOException, ServiceException
     {
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
@@ -122,6 +136,10 @@ public final class GenerateService
         if(historicPurchaseResponse.isSuccess())
             return historicPurchaseResponse.body();
         else
-            return null;
+        {
+            ServiceException.launchException(retrofit, historicPurchaseResponse);
+            throw new ServiceException(ServiceException.messageError);
+        }
     }
+
 }
