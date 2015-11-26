@@ -6,12 +6,15 @@ package com.amanichristian.agl.osmsandroid;
 import android.os.Bundle;
 import android.util.Base64;
 
+
 import com.amanichristian.agl.osmsandroid.Error.ServiceException;
 import com.squareup.okhttp.Headers;
 import java.io.IOException;
 import retrofit.Call;
 import retrofit.Response;
 import retrofit.Retrofit;
+import retrofit.GsonConverterFactory;
+
 
 public final class GenerateService
 {
@@ -25,14 +28,13 @@ public final class GenerateService
         private String  codeEncoded;
         private String id_secretCode;
         private String BODY = "grant_type=client_credentials";
-        private ServiceOSms serviceOSms;
 
     public GenerateService(String id, String secretCode)
     {
         this.id = id;
         this.secretCode = secretCode;
         id_secretCode = this.id + ":"+ this.secretCode;
-        codeEncoded = "Basic "+Base64.encodeToString(id_secretCode.getBytes(), Base64.DEFAULT);
+        codeEncoded = "Basic "+Base64.encodeToString(id_secretCode.getBytes(), Base64.NO_WRAP);
 
     }
 
@@ -41,6 +43,7 @@ public final class GenerateService
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ServiceOSms.END_POINT)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serviceOSms= retrofit.create(ServiceOSms.class);
         Call<Token> tokenCall = serviceOSms.getToken(codeEncoded, BODY);
@@ -61,6 +64,7 @@ public final class GenerateService
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(ServiceOSms.END_POINT)
+                            .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
         serviceOSms = retrofit.create(ServiceOSms.class);
@@ -93,6 +97,7 @@ public final class GenerateService
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(ServiceOSms.END_POINT)
+                            .addConverterFactory(GsonConverterFactory.create())
                             .build();
         serviceOSms = retrofit.create(ServiceOSms.class);
         Call<RemainderSMS> listSMS = serviceOSms.showSMSRemain(codeEncoded);
@@ -111,6 +116,7 @@ public final class GenerateService
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(ServiceOSms.END_POINT)
+                            .addConverterFactory(GsonConverterFactory.create())
                             .build();
         serviceOSms = retrofit.create(ServiceOSms.class);
         Call<StatisticSMS> statisticSMSCall = serviceOSms.getStatistics(codeEncoded);
@@ -129,6 +135,7 @@ public final class GenerateService
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(ServiceOSms.END_POINT)
+                            .addConverterFactory(GsonConverterFactory.create())
                             .build();
         serviceOSms = retrofit.create(ServiceOSms.class);
         Call<HistoricPurchase> historicPurchaseCall = serviceOSms.getHistoric(codeEncoded);
