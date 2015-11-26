@@ -2,6 +2,7 @@
           package="com.amanichristian.agl.osmsandroid">
 
     <uses-permission android:name="ANDROID.PERMISSION.INTERNET"/>
+    <uses-permission android:name="ANDROID.PERMISSION.ACCESS_NETWORK_STATE"/>
     <application android:allowBackup="true"
                  android:label="@string/app_name"
                  android:icon="@mipmap/ic_launcher"
