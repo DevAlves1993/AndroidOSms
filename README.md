@@ -39,12 +39,17 @@ For exemple:
 			Token token = service.generatedToken();  
 			ResponseSMS responseSMS = service.sendSMS(sms,bundleHeader);
 		}
+		
 		// recuperation of information of responseSMS
 		String contentMessage = responseSMS.getOutBoundSMSMessageRequest().getOutboundSMSTextMessage();
 		String senderAddress = responseSMS.getOutBoundSMSMessageRequest().getSenderAddress();
 		String ResourceUrl = response.getRescourceUrl();
+		
 		// recuperation of information of  headers
-		String contentType = 
+		String contentType = bundleHeader.get(GenerateService.CONTENT_TYPE);
+		String contentLength = bundleHeader.get(GenerateService.CONTENT_LENGTH);
+		String location = bundleHeader.get(GenerateService.LOCATION);
+		String date = bundleHeader.get(GenerateService.DATE);
 	}
 
 #### How consulted numbers sms remainder :
