@@ -108,7 +108,7 @@ For exemple :
  the method `getPurchaseOrders()` return a table of PurchaseOrders.
  
 ## Authors and Contributors
-In 2015, Amani Christian (@DevAlves1993) founded OSmsAndroid.
+In 2015, Amani Christian Cyrille Alves (@DevAlves1993) founded OSmsAndroid.
 
 ##Contacts
 
