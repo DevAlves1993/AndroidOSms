@@ -29,9 +29,24 @@ public class ResponseSMS
         private String senderAddress;
         private SMSContent outboundSMSTextMessage;
 
+        public String getSenderAddress()
+        {
+            return senderAddress;
+        }
+
+        public String getOutboundSMSTextMessage()
+        {
+            return outboundSMSTextMessage.getMessage();
+        }
+
         private class SMSContent
         {
             private String message;
+
+            public String getMessage()
+            {
+                return message;
+            }
         }
     }
 }
