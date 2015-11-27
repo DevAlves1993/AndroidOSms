@@ -24,7 +24,7 @@ It is composed of three fields (`String address`, `String senderAddress`,`String
 * the field address it is your number phone.
 * the field senderAddress it is the number phone recipient 
 * the field content it is content of message
-The ResponseSMS object it is the representation of the JSon response returned by the orange smsAPI after having sent a message.
+The ResponseSMS object it is the representation of the JSon response returned by  orange smsAPI after having sent a message.
 For send a sms Call method `sendSMS(SMS sms ,Bundle bundleHeader)` of object GenerateService.
 * The Bundle parameter is used to store the data heading returned by the apiSMS.
 
@@ -53,31 +53,54 @@ For exemple:
 	}
 
 #### How consulted numbers sms remainder :
-  
 
-    private void numbersSMS()
-    {
-      GenerateService service = new GenerateService("5454656","mon code secret");
-      Token token = service.generatedToken();  
-      RemainderSMS remainderSMS = service.remainderSMS();
-    }
+The RemainderSMS object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of remaining SMS.
+At first you have to be interested in the object PartnerContracts. I invite you to glance on the source code.
+For exemple :
+	{
+		RemainderSMS remainderSMS;
+		private void numbersSMS()
+		{
+			GenerateService service = new GenerateService("5454656","mon code secret");
+			Token token = service.generatedToken();  
+			remainderSMS = service.remainderSMS();
+		}
+		PartnerContracts partnerContracts =  remainderSMS.getPartnerContracts();
+	}
 
 
 #### How consulted the statistics of use of the application :
-	
-	private void consultedStatistics()
+
+The StatisticSMS object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of statistics ussage.
+At first you have to be interested in the object PartnerStatistics. I invite you to glance on the source code.
+For exemple :	
 	{
-		GenerateService service = new GenerateService("5454656","mon code secret");
-		Token token = service.generatedToken();
-		StatisticSMS statistics = service.statisticSMS();
+		StatisticSMS statistics;
+		private void consultedStatistics()
+		{
+			GenerateService service = new GenerateService("5454656","mon code secret");
+			Token token = service.generatedToken();
+			statistics = service.statisticSMS();
+		}
+		PartnerStatistics partnerStatistics = statistics.getPartnerStatistics();
 	}
 
 #### How consulted the historic purchase :
+
+The HistoricPurchase object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of purchase historic.
+At first you have to be interested in the object PurchaseOrders. I invite you to glance on the source code.
+For exemple :
 	{
-		GenerateService service = new GenerateService("5454656","mon code secret");
-		Token token = service.generatedToken();
-		HistoricPurchase historic = service.historicPurchase();
+		HistoricPurchase historic;
+		private void showHistoric()
+		{
+			GenerateService service = new GenerateService("5454656","mon code secret");
+			Token token = service.generatedToken();
+			historic = service.historicPurchase();
+		}
+		PurchaseOrders[] purchaseOrders = historic.getPurchaseOrders();
 	}
+ the method `getPurchaseOrders()` return a table of PurchaseOrders.
  
 ## Authors and Contributors
 In 2015, Amani Christian (@DevAlves1993) founded OSmsAndroid.
