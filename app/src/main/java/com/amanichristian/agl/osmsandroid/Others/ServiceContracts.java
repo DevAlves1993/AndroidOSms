@@ -1,4 +1,4 @@
-package com.amanichristian.agl.osmsandroid;
+package com.amanichristian.agl.osmsandroid.Others;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 27/11/2015.

@@ -1,7 +1,7 @@
-package com.amanichristian.agl.osmsandroid;
+package com.amanichristian.agl.osmsandroid.Others;
 
 
-import java.util.ArrayList;
+import com.amanichristian.agl.osmsandroid.Others.ServiceContracts;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 23/11/2015.

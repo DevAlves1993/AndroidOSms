@@ -1,5 +1,7 @@
 package com.amanichristian.agl.osmsandroid;
 
+import com.amanichristian.agl.osmsandroid.Others.PartnerStatistics;
+
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 25/11/2015.
  */
