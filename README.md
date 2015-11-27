@@ -54,6 +54,9 @@ For exemple:
     	String date = bundleHeader.get(GenerateService.DATE);
     }
 
+Mark:In order to send SMS since our API, you must first of all buy a bundle SMS with Orange.In order to 
+to facilitate the integration of API, you have the possiblity to buy a bundle "statter".
+
 #### How consulted numbers sms remainder :
 
 The RemainderSMS object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of remaining SMS.
