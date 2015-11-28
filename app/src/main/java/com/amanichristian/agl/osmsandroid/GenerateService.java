@@ -25,7 +25,8 @@ public final class GenerateService
 
         private String id;
         private String secretCode;
-        private String  codeEncoded;
+        private String codeEncodedBasic;
+        private String codeEncodeBearer;
         private String id_secretCode;
         private String BODY = "grant_type=client_credentials";
 
@@ -34,8 +35,8 @@ public final class GenerateService
         this.id = id;
         this.secretCode = secretCode;
         id_secretCode = this.id + ":"+ this.secretCode;
-        codeEncoded = "Basic "+Base64.encodeToString(id_secretCode.getBytes(), Base64.NO_WRAP);
-
+        codeEncodedBasic = "Basic "+Base64.encodeToString(id_secretCode.getBytes(), Base64.NO_WRAP);
+        codeEncodeBearer = "Bearer "+Base64.encodeToString(id_secretCode.getBytes(), Base64.NO_WRAP);
     }
 
     public  Token generatedToken() throws IOException,ServiceException
@@ -46,7 +47,7 @@ public final class GenerateService
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serviceOSms= retrofit.create(ServiceOSms.class);
-        Call<Token> tokenCall = serviceOSms.getToken(codeEncoded, BODY);
+        Call<Token> tokenCall = serviceOSms.getToken(codeEncodedBasic, BODY);
         Response<Token> tokenResponse = tokenCall.execute();
         if(tokenResponse.isSuccess())
             return tokenResponse.body();
@@ -68,7 +69,7 @@ public final class GenerateService
                             .build();
 
         serviceOSms = retrofit.create(ServiceOSms.class);
-        Call<ResponseSMS> responseSMSCall = serviceOSms.sendSMS(sms, senderAddress, codeEncoded);
+        Call<ResponseSMS> responseSMSCall = serviceOSms.sendSMS(sms, senderAddress, codeEncodeBearer);
         Response<ResponseSMS> responseSMS = responseSMSCall.execute();
         if(responseSMS.isSuccess())
         {
@@ -100,7 +101,7 @@ public final class GenerateService
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
         serviceOSms = retrofit.create(ServiceOSms.class);
-        Call<RemainderSMS> listSMS = serviceOSms.showSMSRemain(codeEncoded);
+        Call<RemainderSMS> listSMS = serviceOSms.showSMSRemain(codeEncodeBearer);
         Response<RemainderSMS> listResponse = listSMS.execute();
         if(listResponse.isSuccess())
             return listResponse.body();
@@ -119,7 +120,7 @@ public final class GenerateService
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
         serviceOSms = retrofit.create(ServiceOSms.class);
-        Call<StatisticSMS> statisticSMSCall = serviceOSms.getStatistics(codeEncoded);
+        Call<StatisticSMS> statisticSMSCall = serviceOSms.getStatistics(codeEncodeBearer);
         Response<StatisticSMS> statisticSMSResponse = statisticSMSCall.execute();
         if(statisticSMSResponse.isSuccess())
             return statisticSMSResponse.body();
@@ -138,7 +139,7 @@ public final class GenerateService
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
         serviceOSms = retrofit.create(ServiceOSms.class);
-        Call<HistoricPurchase> historicPurchaseCall = serviceOSms.getHistoric(codeEncoded);
+        Call<HistoricPurchase> historicPurchaseCall = serviceOSms.getHistoric(codeEncodeBearer);
         Response<HistoricPurchase> historicPurchaseResponse = historicPurchaseCall.execute();
         if(historicPurchaseResponse.isSuccess())
             return historicPurchaseResponse.body();
