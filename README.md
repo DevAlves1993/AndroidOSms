@@ -100,10 +100,20 @@ For exemple :
 		}
 		PurchaseOrders[] purchaseOrders = historic.getPurchaseOrders();
 	}
- the method `getPurchaseOrders()` return a table of PurchaseOrders.
- 
+the method `getPurchaseOrders()` return a table of PurchaseOrders.
+
+### Information on class ServiceException :
+L'exception ServiceException se lève lorsque une erreur suivant des données transcritent dans le corps de la requete (body) ou/et de l'entête.
+Lorsque cette exception ce lève elle affiche l'erreur qui à provoqué cette exception.
+
+
 ## Authors and Contributors
 In 2015, Amani Christian (@DevAlves1993) founded OSmsAndroid.
+
+##Contacts
+
+* Gmail : [alvesamani@gmail.com] (mailto:alvesamani@gmail.com)
+* Twitter [@cyrilleamani] (https://twitter.com/cyrilleamani)
 
 ## Contributing
 If you would like to contribute code you can do so through GitHub by forking the repository and sending a pull request.

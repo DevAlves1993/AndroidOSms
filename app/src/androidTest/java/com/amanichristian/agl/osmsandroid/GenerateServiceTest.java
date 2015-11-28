@@ -10,7 +10,7 @@ public class GenerateServiceTest extends TestCase
 
     public void testGeneratedToken() throws Exception
     {
-        GenerateService service = new GenerateService("56","jfhjf");
+        GenerateService service = new GenerateService("5854556","code secret ");
         Token token = service.generatedToken();
     }
 
