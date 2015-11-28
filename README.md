@@ -11,6 +11,7 @@ The Token object it is the representation object of the JSon response returned b
 For generate a Token object, create a object GenerateService.Then call the method `generatedToken()` of 
 object GenerateService.
 For Exemple:
+
     private void generateMyToken()
     {
       GenerateService service = new GenerateService("5454656","mon code secret");
@@ -29,44 +30,49 @@ For send a sms Call method `sendSMS(SMS sms ,Bundle bundleHeader)` of object Gen
 * The Bundle parameter is used to store the data heading returned by the apiSMS.
 
 For exemple:
-	{
-		Bundle bundleHeader = new Bundle();
-		private void SendMySMS(String address , String senderAddress,String content)
-		{
-			SMS sms = new SMS(address,senderAddress,content);
-			Bundle bubdleHeader = new Bundle();
-			GenerateService service = new GenerateService("5454656","mon code secret");
-			Token token = service.generatedToken();  
-			ResponseSMS responseSMS = service.sendSMS(sms,bundleHeader);
-		}
-		
-		// recuperation of information of responseSMS
-		String contentMessage = responseSMS.getOutBoundSMSMessageRequest().getOutboundSMSTextMessage();
-		String senderAddress = responseSMS.getOutBoundSMSMessageRequest().getSenderAddress();
-		String ResourceUrl = response.getRescourceUrl();
-		
-		// recuperation of information of  headers
-		String contentType = bundleHeader.get(GenerateService.CONTENT_TYPE);
-		String contentLength = bundleHeader.get(GenerateService.CONTENT_LENGTH);
-		String location = bundleHeader.get(GenerateService.LOCATION);
-		String date = bundleHeader.get(GenerateService.DATE);
-	}
+
+    {
+    	Bundle bundleHeader = new Bundle();
+    	private void SendMySMS(String address , String senderAddress,String content)
+    	{
+    		SMS sms = new SMS(address,senderAddress,content);
+    		Bundle bubdleHeader = new Bundle();
+    		GenerateService service = new GenerateService("5454656","mon code secret");
+    		Token token = service.generatedToken();  
+    		ResponseSMS responseSMS = service.sendSMS(sms,bundleHeader);
+    	}
+    	
+    	// recuperation of information of responseSMS
+    	String contentMessage = responseSMS.getOutBoundSMSMessageRequest().getOutboundSMSTextMessage();
+    	String senderAddress = responseSMS.getOutBoundSMSMessageRequest().getSenderAddress();
+    	String ResourceUrl = response.getRescourceUrl();
+    	
+    	// recuperation of information of  headers
+    	String contentType = bundleHeader.get(GenerateService.CONTENT_TYPE);
+    	String contentLength = bundleHeader.get(GenerateService.CONTENT_LENGTH);
+    	String location = bundleHeader.get(GenerateService.LOCATION);
+    	String date = bundleHeader.get(GenerateService.DATE);
+    }
+
+Mark:In order to send SMS since our API, you must first of all buy a bundle SMS with Orange.In order to 
+to facilitate the integration of API, you have the possiblity to buy a bundle "statter".
 
 #### How consulted numbers sms remainder :
 
 The RemainderSMS object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of remaining SMS.
 At first you have to be interested in the object PartnerContracts. I invite you to glance on the source code.
 For exemple :
-	{
-		RemainderSMS remainderSMS;
-		private void numbersSMS()
-		{
-			GenerateService service = new GenerateService("5454656","mon code secret");
-			Token token = service.generatedToken();  
-			remainderSMS = service.remainderSMS();
-		}
-		PartnerContracts partnerContracts =  remainderSMS.getPartnerContracts();
-	}
+
+    {
+    	RemainderSMS remainderSMS;
+    	private void numbersSMS()
+    	{
+    		GenerateService service = new GenerateService("5454656","mon code secret");
+    		Token token = service.generatedToken();  
+    		remainderSMS = service.remainderSMS();
+    	}
+    	PartnerContracts partnerContracts =  remainderSMS.getPartnerContracts();
+    }
 
 
 #### How consulted the statistics of use of the application :
@@ -74,41 +80,38 @@ For exemple :
 The StatisticSMS object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of statistics ussage.
 At first you have to be interested in the object PartnerStatistics. I invite you to glance on the source code.
 For exemple :	
-	{
-		StatisticSMS statistics;
-		private void consultedStatistics()
-		{
-			GenerateService service = new GenerateService("5454656","mon code secret");
-			Token token = service.generatedToken();
-			statistics = service.statisticSMS();
-		}
-		PartnerStatistics partnerStatistics = statistics.getPartnerStatistics();
-	}
+
+        {
+        	StatisticSMS statistics;
+        	private void consultedStatistics()
+        	{
+        		GenerateService service = new GenerateService("5454656","mon code secret");
+        		Token token = service.generatedToken();
+        		statistics = service.statisticSMS();
+        	}
+        	PartnerStatistics partnerStatistics = statistics.getPartnerStatistics();
+        }
 
 #### How consulted the historic purchase :
 
 The HistoricPurchase object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of purchase historic.
 At first you have to be interested in the object PurchaseOrders. I invite you to glance on the source code.
 For exemple :
-	{
-		HistoricPurchase historic;
-		private void showHistoric()
-		{
-			GenerateService service = new GenerateService("5454656","mon code secret");
-			Token token = service.generatedToken();
-			historic = service.historicPurchase();
-		}
-		PurchaseOrders[] purchaseOrders = historic.getPurchaseOrders();
-	}
-the method `getPurchaseOrders()` return a table of PurchaseOrders.
 
-### Information on class ServiceException :
-L'exception ServiceException se lève lorsque une erreur suivant des données transcritent dans le corps de la requete (body) ou/et de l'entête.
-Lorsque cette exception ce lève elle affiche l'erreur qui à provoqué cette exception.
-
-
+    {
+    	HistoricPurchase historic;
+    	private void showHistoric()
+    	{
+    		GenerateService service = new GenerateService("5454656","mon code secret");
+    		Token token = service.generatedToken();
+    		historic = service.historicPurchase();
+    	}
+    	PurchaseOrders[] purchaseOrders = historic.getPurchaseOrders();
+    }
+ the method `getPurchaseOrders()` return a table of PurchaseOrders.
+ 
 ## Authors and Contributors
-In 2015, Amani Christian (@DevAlves1993) founded OSmsAndroid.
+In 2015, Amani Christian Cyrille Alves (@DevAlves1993) founded OSmsAndroid.
 
 ##Contacts
 
