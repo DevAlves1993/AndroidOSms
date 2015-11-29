@@ -8,6 +8,12 @@ public class ServiceStatistics
     private String country;
     private  CountyStatistics[] countryStatistics;
 
+    public ServiceStatistics(String country, CountyStatistics[] countryStatistics)
+    {
+        this.country = country;
+        this.countryStatistics = countryStatistics;
+    }
+
     public String getCountry()
     {
         return country;
@@ -19,8 +25,14 @@ public class ServiceStatistics
 
     public class CountyStatistics
     {
-        String applicationId;
-        String usage;
+        private  String applicationId;
+        private  String usage;
+
+        public CountyStatistics(String applicationId, String usage)
+        {
+            this.applicationId = applicationId;
+            this.usage = usage;
+        }
 
         public String getApplicationId()
         {

@@ -53,7 +53,7 @@ public final class GenerateService
             return tokenResponse.body();
         else
         {
-            ServiceException.launchException(retrofit,tokenResponse);
+            ServiceException.launchException(retrofit,tokenResponse,true);
             throw new ServiceException(ServiceException.messageError);
         }
     }
@@ -82,7 +82,7 @@ public final class GenerateService
         }
         else
         {
-            ServiceException.launchException(retrofit,responseSMS);
+            ServiceException.launchException(retrofit,responseSMS,false);
             throw new ServiceException(ServiceException.messageError);
         }
     }
@@ -107,7 +107,7 @@ public final class GenerateService
             return listResponse.body();
         else
         {
-            ServiceException.launchException(retrofit,listResponse);
+            ServiceException.launchException(retrofit,listResponse,false);
             throw new ServiceException(ServiceException.messageError);
         }
     }
@@ -126,7 +126,7 @@ public final class GenerateService
             return statisticSMSResponse.body();
         else
         {
-            ServiceException.launchException(retrofit,statisticSMSResponse);
+            ServiceException.launchException(retrofit,statisticSMSResponse,false);
             throw new ServiceException(ServiceException.messageError);
         }
     }
@@ -145,7 +145,7 @@ public final class GenerateService
             return historicPurchaseResponse.body();
         else
         {
-            ServiceException.launchException(retrofit, historicPurchaseResponse);
+            ServiceException.launchException(retrofit, historicPurchaseResponse,false);
             throw new ServiceException(ServiceException.messageError);
         }
     }
