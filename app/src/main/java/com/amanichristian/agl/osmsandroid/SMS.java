@@ -31,8 +31,8 @@ public class SMS
 
         public SMSMessage(String address,String senderAddress,String content)
         {
-            this.address =address;
-            this.senderAddress = senderAddress;
+            this.address ="tel:"+address;
+            this.senderAddress ="tel:"+ senderAddress;
             this.message = new SMSContent(content);
         }
 

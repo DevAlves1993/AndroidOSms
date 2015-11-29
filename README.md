@@ -33,13 +33,15 @@ For exemple:
 
     {
     	Bundle bundleHeader = new Bundle();
-    	private void SendMySMS(String address , String senderAddress,String content)
+    	private void SendMySMS()
     	{
+    		String address = "+22500000000";
+    		String senderAddress = "+22511111111";
     		SMS sms = new SMS(address,senderAddress,content);
     		Bundle bubdleHeader = new Bundle();
     		GenerateService service = new GenerateService("5454656","mon code secret");
-    		Token token = service.generatedToken();  
-    		ResponseSMS responseSMS = service.sendSMS(sms,bundleHeader);
+    		Token token = service.generatedToken();
+    		ResponseSMS responseSMS = service.sendSMS(sms,bundleHeader,Token);
     	}
     	
     	// recuperation of information of responseSMS
@@ -69,7 +71,7 @@ For exemple :
     	{
     		GenerateService service = new GenerateService("5454656","mon code secret");
     		Token token = service.generatedToken();  
-    		remainderSMS = service.remainderSMS();
+    		remainderSMS = service.remainderSMS(token);
     	}
     	PartnerContracts partnerContracts =  remainderSMS.getPartnerContracts();
     }
@@ -86,7 +88,7 @@ For exemple :
         	private void consultedStatistics()
         	{
         		GenerateService service = new GenerateService("5454656","mon code secret");
-        		Token token = service.generatedToken();
+        		Token token = service.generatedToken(token);
         		statistics = service.statisticSMS();
         	}
         	PartnerStatistics partnerStatistics = statistics.getPartnerStatistics();
@@ -104,7 +106,7 @@ For exemple :
     	{
     		GenerateService service = new GenerateService("5454656","mon code secret");
     		Token token = service.generatedToken();
-    		historic = service.historicPurchase();
+    		historic = service.historicPurchase(token);
     	}
     	PurchaseOrders[] purchaseOrders = historic.getPurchaseOrders();
     }
