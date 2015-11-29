@@ -35,6 +35,9 @@ For exemple:
     	Bundle bundleHeader = new Bundle();
     	private void SendMySMS()
     	{
+    		// the address and the senderAddress must be written on this form.
+			// the Iso code of the country concatenated to the number
+			// +XXXxxxxxxxx
     		String address = "+22500000000";
     		String senderAddress = "+22511111111";
     		SMS sms = new SMS(address,senderAddress,content);
