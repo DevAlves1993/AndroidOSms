@@ -1,5 +1,9 @@
 package com.amanichristian.agl.osmsandroid;
 
+import android.os.Bundle;
+
+import com.squareup.okhttp.ResponseBody;
+
 import junit.framework.TestCase;
 
 /**

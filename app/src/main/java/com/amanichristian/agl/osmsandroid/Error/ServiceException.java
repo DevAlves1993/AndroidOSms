@@ -21,8 +21,9 @@ public class ServiceException extends Exception
     }
     public static void launchException(Retrofit retrofit, Response<?> response) throws IOException
     {
-        Converter<ResponseBody,Errors> errorConverter = retrofit.responseConverter(Errors.class,new Annotation[0]);
-        Errors error = errorConverter.convert(response.errorBody());
+        String s = response.errorBody().string();
+        Converter<ResponseBody,ErrorOne> errorConverter = retrofit.responseConverter(ErrorOne.class,new Annotation[0]);
+        ErrorOne error = errorConverter.convert(response.errorBody());
         messageError = error.error;
     }
 }
