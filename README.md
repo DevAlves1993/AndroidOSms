@@ -1,6 +1,6 @@
 # OsmsAndroid
 OSM Android is a simple library that allows you to consume  quickly orange api [SMS API] (https://www.orangepartner.com/SMS-CI-API) and making you productive in the development of your mobile apps requiring a called on the [orange api] (https://www.orangepartner.com/SMS-CI-API).
-It is based on the library [retrofit] (https://github.com/square/retrofit)
+It is based on the library [retrofit] (https://github.com/square/retrofit) and the library [okhttp] (https://github.com/square/okhttp)
 
 
 ## Usage
@@ -60,7 +60,7 @@ For example:
     }
 
 Mark:In order to send SMS since our API, you must first of all buy a bundle SMS with Orange.In order to 
-to facilitate the integration of API, you have the possiblity to buy a bundle "statter".
+to facilitate the integration of API, you have the possibility to buy a bundle "statter".
 
 #### How consulted numbers sms remainder :
 
@@ -72,7 +72,7 @@ For example :
     	RemainderSMS remainderSMS;
     	private void numbersSMS()
     	{
-    		GenerateService service = new GenerateService("5454656","mon code secret");
+    		GenerateService service = new GenerateService("5454656","secret code");
     		Token token = service.generatedToken();  
     		remainderSMS = service.remainderSMS(token);
     	}
@@ -90,7 +90,7 @@ For example :
         	StatisticSMS statistics;
         	private void consultedStatistics()
         	{
-        		GenerateService service = new GenerateService("5454656","mon code secret");
+        		GenerateService service = new GenerateService("5454656","secret code");
         		Token token = service.generatedToken();
         		statistics = service.statisticSMS(token);
         	}
@@ -107,7 +107,7 @@ For example :
     	HistoricPurchase historic;
     	private void showHistoric()
     	{
-    		GenerateService service = new GenerateService("5454656","mon code secret");
+    		GenerateService service = new GenerateService("5454656","secret code");
     		Token token = service.generatedToken();
     		historic = service.historicPurchase(token);
     	}
