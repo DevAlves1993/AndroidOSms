@@ -4,7 +4,6 @@ package com.amanichristian.agl.osmsandroid;
  * Created by AMANI CHRISTIAN CYRILLE on 23/11/2015.
  */
 import android.os.Bundle;
-import android.util.Base64;
 
 
 import com.amanichristian.agl.osmsandroid.Error.ServiceException;
