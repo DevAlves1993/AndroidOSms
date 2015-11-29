@@ -15,4 +15,10 @@ public class ErrorTwo
         this.message = message;
         this.description = description;
     }
+
+    @Override
+    public String toString()
+    {
+        return "code : "+code+" message : "+message+" description : "+description;
+    }
 }

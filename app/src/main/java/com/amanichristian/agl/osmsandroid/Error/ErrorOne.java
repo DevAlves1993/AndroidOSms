@@ -5,6 +5,18 @@ package com.amanichristian.agl.osmsandroid.Error;
  */
 public class ErrorOne
 {
-    String error;
-    String error_message;
+    private  String error;
+    private  String error_message;
+
+    public ErrorOne(String error, String error_message)
+    {
+        this.error = error;
+        this.error_message = error_message;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "error : "+error+" error message : "+error_message;
+    }
 }
