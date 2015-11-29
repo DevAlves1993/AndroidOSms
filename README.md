@@ -10,7 +10,7 @@ It is based on the library [retrofit] (https://github.com/square/retrofit)
 The Token object it is the representation object of the JSon response returned by the orange smsAPI.
 For generate a Token object, create a object GenerateService.Then call the method `generatedToken()` of 
 object GenerateService.
-For Exemple:
+For Example:
 
     private void generateMyToken()
     {
@@ -29,7 +29,7 @@ The ResponseSMS object it is the representation of the JSon response returned by
 For send a sms Call method `sendSMS(SMS sms ,Bundle bundleHeader)` of object GenerateService.
 * The Bundle parameter is used to store the data heading returned by the apiSMS.
 
-For exemple:
+For example:
 
     {
     	Bundle bundleHeader = new Bundle();
@@ -66,7 +66,7 @@ to facilitate the integration of API, you have the possiblity to buy a bundle "s
 
 The RemainderSMS object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of remaining SMS.
 At first you have to be interested in the object PartnerContracts. I invite you to glance on the source code.
-For exemple :
+For example :
 
     {
     	RemainderSMS remainderSMS;
@@ -84,15 +84,15 @@ For exemple :
 
 The StatisticSMS object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of statistics ussage.
 At first you have to be interested in the object PartnerStatistics. I invite you to glance on the source code.
-For exemple :	
+For example :
 
         {
         	StatisticSMS statistics;
         	private void consultedStatistics()
         	{
         		GenerateService service = new GenerateService("5454656","mon code secret");
-        		Token token = service.generatedToken(token);
-        		statistics = service.statisticSMS();
+        		Token token = service.generatedToken();
+        		statistics = service.statisticSMS(token);
         	}
         	PartnerStatistics partnerStatistics = statistics.getPartnerStatistics();
         }
@@ -101,7 +101,7 @@ For exemple :
 
 The HistoricPurchase object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of purchase historic.
 At first you have to be interested in the object PurchaseOrders. I invite you to glance on the source code.
-For exemple :
+For example :
 
     {
     	HistoricPurchase historic;
@@ -114,7 +114,11 @@ For exemple :
     	PurchaseOrders[] purchaseOrders = historic.getPurchaseOrders();
     }
  the method `getPurchaseOrders()` return a table of PurchaseOrders.
- 
+
+#### Mark:
+If you test the library in an emulator and that this error this raises : javax.net.ssl.SSLHandshakeException: org.bouncycastle.jce.exception.ExtCertPathValidatorException: Could not validate certificate signature
+Take care to put your emulator per hour to indicate on your PC or MAC.
+
 ## Authors and Contributors
 In 2015, Amani Christian Cyrille Alves (@DevAlves1993) founded OSmsAndroid.
 
