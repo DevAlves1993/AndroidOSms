@@ -21,19 +21,6 @@ public class ServiceException extends Exception
     }
     public static void launchException(Retrofit retrofit, Response<?> response,boolean isErrorOne) throws IOException
     {
-        if(isErrorOne)
-        {
-            String s = response.errorBody().string();
-            Converter<ResponseBody,ErrorOne> errorConverter = retrofit.responseConverter(ErrorOne.class,new Annotation[0]);
-            ErrorOne error = errorConverter.convert(response.errorBody());
-            messageError = error.toString();
-        }
-        else
-        {
-            String s = response.errorBody().string();
-            Converter<ResponseBody,ErrorTwo> errorConverter = retrofit.responseConverter(ErrorOne.class,new Annotation[0]);
-            ErrorTwo error = errorConverter.convert(response.errorBody());
-            messageError = error.toString();
-        }
+      messageError = response.errorBody().string();
     }
 }
