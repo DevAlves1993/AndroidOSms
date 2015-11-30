@@ -4,10 +4,10 @@ package com.amanichristian.agl.osmsandroid;
  * Created by AMANI CHRISTIAN CYRILLE on 23/11/2015.
  */
 import android.os.Bundle;
-import android.util.Base64;
 
 
 import com.amanichristian.agl.osmsandroid.Error.ServiceException;
+import com.squareup.okhttp.Credentials;
 import com.squareup.okhttp.Headers;
 import java.io.IOException;
 import retrofit.Call;
@@ -27,16 +27,13 @@ public final class GenerateService
         private String secretCode;
         private String codeEncodedBasic;
         private String codeEncodeBearer;
-        private String id_secretCode;
         private String BODY = "grant_type=client_credentials";
 
     public GenerateService(String id, String secretCode)
     {
         this.id = id;
         this.secretCode = secretCode;
-        id_secretCode = this.id + ":"+ this.secretCode;
-        codeEncodedBasic = "Basic "+Base64.encodeToString(id_secretCode.getBytes(), Base64.NO_WRAP);
-        codeEncodeBearer = "Bearer "+Base64.encodeToString(id_secretCode.getBytes(), Base64.NO_WRAP);
+        codeEncodedBasic = Credentials.basic(this.id,this.secretCode);
     }
 
     public  Token generatedToken() throws IOException,ServiceException
@@ -46,20 +43,22 @@ public final class GenerateService
                 .baseUrl(ServiceOSms.END_POINT)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        serviceOSms= retrofit.create(ServiceOSms.class);
+        serviceOSms = retrofit.create(ServiceOSms.class);
         Call<Token> tokenCall = serviceOSms.getToken(codeEncodedBasic, BODY);
         Response<Token> tokenResponse = tokenCall.execute();
         if(tokenResponse.isSuccess())
             return tokenResponse.body();
         else
         {
-            ServiceException.launchException(retrofit,tokenResponse);
+            ServiceException.launchException(retrofit,tokenResponse,true);
             throw new ServiceException(ServiceException.messageError);
         }
+
     }
 
-    public ResponseSMS sendSMS(SMS sms,Bundle bundleHeader) throws IOException,ServiceException
+    public ResponseSMS sendSMS(SMS sms,Bundle bundleHeader,Token token) throws IOException,ServiceException
     {
+        codeEncodeBearer = token.getToken_type()+" "+token.getAccess_token();
         String senderAddress = sms.getOutBoundSMSMessageRequest().getSenderAddress();
         encodedSenderAddress(senderAddress);
         ServiceOSms serviceOSms;
@@ -82,7 +81,7 @@ public final class GenerateService
         }
         else
         {
-            ServiceException.launchException(retrofit,responseSMS);
+            ServiceException.launchException(retrofit,responseSMS,false);
             throw new ServiceException(ServiceException.messageError);
         }
     }
@@ -93,8 +92,9 @@ public final class GenerateService
         return senderAddress;
     }
 
-    public RemainderSMS remainderSMS() throws IOException,ServiceException
+    public RemainderSMS remainderSMS(Token token) throws IOException,ServiceException
     {
+        codeEncodeBearer = token.getToken_type()+" "+token.getAccess_token();
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(ServiceOSms.END_POINT)
@@ -107,13 +107,14 @@ public final class GenerateService
             return listResponse.body();
         else
         {
-            ServiceException.launchException(retrofit,listResponse);
+            ServiceException.launchException(retrofit,listResponse,false);
             throw new ServiceException(ServiceException.messageError);
         }
     }
 
-    public StatisticSMS statisticSMS() throws IOException, ServiceException
+    public StatisticSMS statisticSMS(Token token) throws IOException, ServiceException
     {
+        codeEncodeBearer = token.getToken_type()+" "+token.getAccess_token();
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(ServiceOSms.END_POINT)
@@ -126,13 +127,14 @@ public final class GenerateService
             return statisticSMSResponse.body();
         else
         {
-            ServiceException.launchException(retrofit,statisticSMSResponse);
+            ServiceException.launchException(retrofit,statisticSMSResponse,false);
             throw new ServiceException(ServiceException.messageError);
         }
     }
 
-    public HistoricPurchase historicPurchase() throws IOException, ServiceException
+    public HistoricPurchase historicPurchase(Token token) throws IOException, ServiceException
     {
+        codeEncodeBearer = token.getToken_type()+" "+token.getAccess_token();
         ServiceOSms serviceOSms;
         Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(ServiceOSms.END_POINT)
@@ -145,7 +147,7 @@ public final class GenerateService
             return historicPurchaseResponse.body();
         else
         {
-            ServiceException.launchException(retrofit, historicPurchaseResponse);
+            ServiceException.launchException(retrofit, historicPurchaseResponse,false);
             throw new ServiceException(ServiceException.messageError);
         }
     }
