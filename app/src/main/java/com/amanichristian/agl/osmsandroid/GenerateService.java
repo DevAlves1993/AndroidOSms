@@ -30,6 +30,7 @@ public final class GenerateService
         private final String BODY = "client_credentials";
 
         private  Retrofit retrofit;
+        private ServiceOSms serviceOSms;
 
     public GenerateService(String id, String secretCode)
     {
@@ -41,12 +42,13 @@ public final class GenerateService
             .baseUrl(ServiceOSms.END_POINT)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+
+        this.serviceOSms = retrofit.create(ServiceOSms.class);
     }
 
     public  Token generatedToken() throws IOException,ServiceException
     {
-        ServiceOSms serviceOSms;
-        serviceOSms = retrofit.create(ServiceOSms.class);
+
         Call<Token> tokenCall = serviceOSms.getToken(codeEncodedBasic, BODY);
         Response<Token> tokenResponse = tokenCall.execute();
         if(tokenResponse.isSuccess())
@@ -64,8 +66,6 @@ public final class GenerateService
         codeEncodeBearer = token.getToken_type()+" "+token.getAccess_token();
         String senderAddress = sms.getOutBoundSMSMessageRequest().getSenderAddress();
         encodedSenderAddress(senderAddress);
-        ServiceOSms serviceOSms;
-        serviceOSms = retrofit.create(ServiceOSms.class);
         Call<ResponseSMS> responseSMSCall = serviceOSms.sendSMS(sms, senderAddress, codeEncodeBearer);
         Response<ResponseSMS> responseSMS = responseSMSCall.execute();
         if(responseSMS.isSuccess())
@@ -93,8 +93,6 @@ public final class GenerateService
     public RemainderSMS remainderSMS(Token token) throws IOException,ServiceException
     {
         codeEncodeBearer = token.getToken_type()+" "+token.getAccess_token();
-        ServiceOSms serviceOSms;
-        serviceOSms = retrofit.create(ServiceOSms.class);
         Call<RemainderSMS> listSMS = serviceOSms.showSMSRemain(codeEncodeBearer);
         Response<RemainderSMS> listResponse = listSMS.execute();
         if(listResponse.isSuccess())
@@ -109,8 +107,6 @@ public final class GenerateService
     public StatisticSMS statisticSMS(Token token) throws IOException, ServiceException
     {
         codeEncodeBearer = token.getToken_type()+" "+token.getAccess_token();
-        ServiceOSms serviceOSms;
-        serviceOSms = retrofit.create(ServiceOSms.class);
         Call<StatisticSMS> statisticSMSCall = serviceOSms.getStatistics(codeEncodeBearer);
         Response<StatisticSMS> statisticSMSResponse = statisticSMSCall.execute();
         if(statisticSMSResponse.isSuccess())
@@ -125,8 +121,6 @@ public final class GenerateService
     public HistoricPurchase historicPurchase(Token token) throws IOException, ServiceException
     {
         codeEncodeBearer = token.getToken_type()+" "+token.getAccess_token();
-        ServiceOSms serviceOSms;
-        serviceOSms = retrofit.create(ServiceOSms.class);
         Call<HistoricPurchase> historicPurchaseCall = serviceOSms.getHistoric(codeEncodeBearer);
         Response<HistoricPurchase> historicPurchaseResponse = historicPurchaseCall.execute();
         if(historicPurchaseResponse.isSuccess())
