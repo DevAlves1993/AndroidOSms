@@ -6,6 +6,8 @@ package com.amanichristian.agl.osmsandroid;
 
 import retrofit.Call;
 import retrofit.http.Body;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.Headers;
@@ -16,8 +18,9 @@ public interface ServiceOSms
 {
     String END_POINT = "https://api.orange.com";
 
+    @FormUrlEncoded
     @POST("/oauth/v2/token")
-    Call<Token> getToken(@Header("Authorization") String codeEncoded,@Body() String body);
+    Call<Token> getToken(@Header("Authorization") String codeEncoded,@Field("grant_type") String grant_type);
 
     @Headers("Content-Type:application/json")
     @POST("/smsmessaging/v1/outbound/{tel}/requests")

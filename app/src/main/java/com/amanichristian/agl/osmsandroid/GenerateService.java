@@ -27,7 +27,7 @@ public final class GenerateService
         private String secretCode;
         private String codeEncodedBasic;
         private String codeEncodeBearer;
-        private String BODY = "grant_type=client_credentials";
+        private final String BODY = "client_credentials";
 
     public GenerateService(String id, String secretCode)
     {
