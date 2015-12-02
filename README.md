@@ -120,7 +120,7 @@ If you test the library in an emulator and that this error this raises : javax.n
 Take care to put your emulator per hour to indicate on your PC or MAC.
 
 ## Authors and Contributors
-In 2015, Amani Christian Cyrille Alves (@DevAlves1993) founded OSmsAndroid.
+In 2015, Amani Christian Cyrille Alves (@DevAlves1993) founded AndroidOSms.
 
 ##Contacts
 
