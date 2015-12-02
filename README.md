@@ -12,9 +12,9 @@ For generate a Token object, create a object GenerateService.Then call the metho
 object GenerateService.
 For Example:
 
-    private void generateMyToken()
+    private void generateMyToken() throws IOException,ServiceException
     {
-      GenerateService service = new GenerateService("5454656","mon code secret");
+      GenerateService service = new GenerateService("5454656","my secret code");
       Token token = service.generatedToken();  
     }
   
@@ -33,7 +33,8 @@ For example:
 
     {
     	Bundle bundleHeader = new Bundle();
-    	private void SendMySMS()
+    	ResponseSMS responseSMS
+    	private void SendMySMS() throws IOException,ServiceException
     	{
     		// the address and the senderAddress must be written on this form.
 			// the Iso code of the country concatenated to the number
@@ -41,16 +42,16 @@ For example:
     		String address = "+22500000000";
     		String senderAddress = "+22511111111";
     		SMS sms = new SMS(address,senderAddress,content);
-    		Bundle bubdleHeader = new Bundle();
+    		Bundle bundleHeader = new Bundle();
     		GenerateService service = new GenerateService("5454656","mon code secret");
     		Token token = service.generatedToken();
-    		ResponseSMS responseSMS = service.sendSMS(sms,bundleHeader,Token);
+    		responseSMS = service.sendSMS(sms,bundleHeader,Token);
     	}
     	
     	// recuperation of information of responseSMS
     	String contentMessage = responseSMS.getOutBoundSMSMessageRequest().getOutboundSMSTextMessage();
     	String senderAddress = responseSMS.getOutBoundSMSMessageRequest().getSenderAddress();
-    	String ResourceUrl = response.getRescourceUrl();
+    	String ResourceUrl = responseSMS.getResourceUrl();
     	
     	// recuperation of information of  headers
     	String contentType = bundleHeader.get(GenerateService.CONTENT_TYPE);
@@ -60,7 +61,7 @@ For example:
     }
 
 Mark:In order to send SMS since our API, you must first of all buy a bundle SMS with Orange.In order to 
-to facilitate the integration of API, you have the possibility to buy a bundle "statter".
+to facilitate the integration of API, you have the possibility to buy a bundle "starter".
 
 #### How consulted numbers sms remainder :
 
@@ -70,7 +71,7 @@ For example :
 
     {
     	RemainderSMS remainderSMS;
-    	private void numbersSMS()
+    	private void numbersSMS() throws IOException,ServiceException
     	{
     		GenerateService service = new GenerateService("5454656","secret code");
     		Token token = service.generatedToken();  
@@ -88,9 +89,9 @@ For example :
 
         {
         	StatisticSMS statistics;
-        	private void consultedStatistics()
+        	private void consultedStatistics()  throws IOException,ServiceException
         	{
-        		GenerateService service = new GenerateService("5454656","secret code");
+        		GenerateService service = new GenerateService("5454656","my secret code");
         		Token token = service.generatedToken();
         		statistics = service.statisticSMS(token);
         	}
@@ -105,7 +106,7 @@ For example :
 
     {
     	HistoricPurchase historic;
-    	private void showHistoric()
+    	private void showHistoric()  throws IOException,ServiceException
     	{
     		GenerateService service = new GenerateService("5454656","secret code");
     		Token token = service.generatedToken();
