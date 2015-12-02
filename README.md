@@ -1,5 +1,5 @@
-# OsmsAndroid
-OSM Android is a simple library that allows you to consume  quickly orange api [SMS API] (https://www.orangepartner.com/SMS-CI-API) and making you productive in the development of your mobile apps requiring a called on the [orange api] (https://www.orangepartner.com/SMS-CI-API).
+# AndroidOSms
+AndroidOSms  is a simple library that allows you to consume  quickly orange api [SMS API] (https://www.orangepartner.com/SMS-CI-API) and making you productive in the development of your mobile apps requiring a called on the [orange api] (https://www.orangepartner.com/SMS-CI-API).
 It is based on the library [retrofit] (https://github.com/square/retrofit) and the library [okhttp] (https://github.com/square/okhttp)
 
 
