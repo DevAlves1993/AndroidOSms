@@ -1,4 +1,4 @@
-package com.amanichristian.agl.osmsandroid;
+package com.amanichristian.agl.AndroidOSms;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 25/11/2015.

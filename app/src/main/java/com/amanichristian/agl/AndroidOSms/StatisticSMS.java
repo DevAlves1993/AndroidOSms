@@ -1,6 +1,6 @@
-package com.amanichristian.agl.osmsandroid;
+package com.amanichristian.agl.AndroidOSms;
 
-import com.amanichristian.agl.osmsandroid.Others.PartnerStatistics;
+import com.amanichristian.agl.AndroidOSms.Others.PartnerStatistics;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 25/11/2015.

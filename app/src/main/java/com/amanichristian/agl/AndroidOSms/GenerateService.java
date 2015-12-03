@@ -1,4 +1,4 @@
-package com.amanichristian.agl.osmsandroid;
+package com.amanichristian.agl.AndroidOSms;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 23/11/2015.
@@ -6,7 +6,7 @@ package com.amanichristian.agl.osmsandroid;
 import android.os.Bundle;
 
 
-import com.amanichristian.agl.osmsandroid.Error.ServiceException;
+import com.amanichristian.agl.AndroidOSms.Error.ServiceException;
 import com.squareup.okhttp.Credentials;
 import com.squareup.okhttp.Headers;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.amanichristian.agl.osmsandroid.Error;
+package com.amanichristian.agl.AndroidOSms.Error;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 29/11/2015.

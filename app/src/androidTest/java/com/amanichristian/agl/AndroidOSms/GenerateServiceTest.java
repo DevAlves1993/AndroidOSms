@@ -1,8 +1,4 @@
-package com.amanichristian.agl.osmsandroid;
-
-import android.os.Bundle;
-
-import com.squareup.okhttp.ResponseBody;
+package com.amanichristian.agl.AndroidOSms;
 
 import junit.framework.TestCase;
 

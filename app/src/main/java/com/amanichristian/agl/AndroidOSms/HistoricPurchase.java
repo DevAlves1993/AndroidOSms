@@ -1,6 +1,6 @@
-package com.amanichristian.agl.osmsandroid;
+package com.amanichristian.agl.AndroidOSms;
 
-import com.amanichristian.agl.osmsandroid.Others.PurchaseOrders;
+import com.amanichristian.agl.AndroidOSms.Others.PurchaseOrders;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 25/11/2015.

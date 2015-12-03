@@ -1,7 +1,5 @@
-package com.amanichristian.agl.osmsandroid.Others;
+package com.amanichristian.agl.AndroidOSms.Others;
 
-
-import com.amanichristian.agl.osmsandroid.Others.ServiceContracts;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 23/11/2015.

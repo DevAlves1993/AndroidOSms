@@ -1,11 +1,7 @@
-package com.amanichristian.agl.osmsandroid.Error;
-
-import com.squareup.okhttp.ResponseBody;
+package com.amanichristian.agl.AndroidOSms.Error;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 
-import retrofit.Converter;
 import retrofit.Response;
 import retrofit.Retrofit;
 

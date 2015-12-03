@@ -1,4 +1,4 @@
-package com.amanichristian.agl.osmsandroid;
+package com.amanichristian.agl.AndroidOSms;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
