@@ -10,14 +10,22 @@ It is based on the library [retrofit] (https://github.com/square/retrofit) and t
 The Token object it is the representation object of the JSon response returned by the orange smsAPI.
 For generate a Token object, create a object GenerateService.Then call the method `generatedToken()` of 
 object GenerateService.
-For Example:
+For example:
 
     private void generateMyToken() throws IOException,ServiceException
     {
-      GenerateService service = new GenerateService("5454656","my secret code");
-      Token token = service.generatedToken();  
+    	GenerateService service = new GenerateService("5454656","my secret code");
+    	Token token = service.generatedToken();
     }
-  
+
+For example with RxJava:
+
+	private void generateMyToken() throws IOException,ServiceException
+	{
+		RxGenerateService service = new RxGenerateService("5454656","my secret code");
+		Token token = service.generatedToken();
+	}
+
 #### How Send a SMS :
 
 The SMS object it is the representation object of your SMS have send.
@@ -41,8 +49,8 @@ For example:
 			// +XXXxxxxxxxx
     		String address = "+22500000000";
     		String senderAddress = "+22511111111";
+    		String content = "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum";
     		SMS sms = new SMS(address,senderAddress,content);
-    		Bundle bundleHeader = new Bundle();
     		GenerateService service = new GenerateService("5454656","mon code secret");
     		Token token = service.generatedToken();
     		responseSMS = service.sendSMS(sms,bundleHeader,Token);
@@ -59,6 +67,28 @@ For example:
     	String location = bundleHeader.get(GenerateService.LOCATION);
     	String date = bundleHeader.get(GenerateService.DATE);
     }
+
+
+For example with RxJava:
+
+	{
+		Bundle bundleHeader = new Bundle();
+		Observable<ResponseSMS> responseSMS
+
+		private void SendMySMS() throws ServiceException
+		{
+			// the address and the senderAddress must be written on this form.
+			// the Iso code of the country concatenated to the number
+			// +XXXxxxxxxxx
+			String address = "+22500000000";
+			String senderAddress = "+22511111111";
+			String content = "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum";
+			SMS sms = new SMS(address,senderAddress,content);
+			RxGenerateService service = new RxGenerateService("5454656","mon code secret");
+			Token token = service.generatedToken();
+			responseSMS = service.sendSMS(sms,bundleHeader,Token);
+		}
+	}
 
 Mark:In order to send SMS since our API, you must first of all buy a bundle SMS with Orange.In order to 
 to facilitate the integration of API, you have the possibility to buy a bundle "starter".
@@ -81,6 +111,19 @@ For example :
     }
 
 
+For example with RxJava:
+
+	{
+    	Observable<RemainderSMS> remainderSMS;
+    	private void numbersSMS() throws IOException,ServiceException
+    	{
+    		RxGenerateService service = new RxGenerateService("5454656","secret code");
+    		Token token = service.generatedToken();
+    		remainderSMS = service.remainderSMS(token);
+    	}
+
+    }
+
 #### How consulted the statistics of use of the application :
 
 The StatisticSMS object it is the representation object of JSon response returned by orange smsAPI having sent a request of consultation of statistics ussage.
@@ -97,6 +140,18 @@ For example :
         	}
         	PartnerStatistics partnerStatistics = statistics.getPartnerStatistics();
         }
+
+For exampe with RxJava:
+
+	{
+		Observable<StatisticSMS> statistics;
+		private void consultedStatistics()  throws IOException,ServiceException
+		{
+			RxGenerateService service = new RxGenerateService("5454656","my secret code");
+			Token token = service.generatedToken();
+			statistics = service.statisticSMS(token);
+		}
+	}
 
 #### How consulted the historic purchase :
 
@@ -116,12 +171,24 @@ For example :
     }
  the method `getPurchaseOrders()` return a table of PurchaseOrders.
 
+For example with RxJava :
+
+	{
+		Observable<HistoricPurchase> historic;
+		private void showHistoric()  throws IOException,ServiceException
+		{
+			RxGenerateService service = new RxGenerateService("5454656","secret code");
+			Token token = service.generatedToken();
+			historic = service.historicPurchase(token);
+		}
+    }
+
 #### Mark:
 If you test the library in an emulator and that this error this raises : javax.net.ssl.SSLHandshakeException: org.bouncycastle.jce.exception.ExtCertPathValidatorException: Could not validate certificate signature
 Take care to put your emulator per hour to indicate on your PC or MAC.
 
 ## Authors and Contributors
-In 2015, Amani Christian Cyrille Alves (@DevAlves1993) founded AndroidOSms.
+In 2015, Amani Christian Cyrille Alves (@DevAlves1993) founded AndroidOSms And of developer group Akanza.
 
 ##Contacts
 

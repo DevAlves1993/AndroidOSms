@@ -33,6 +33,7 @@ public class RxGenerateService
         this.id = id;
         this.secretCode = secretCode;
         retrofit = new Retrofit.Builder()
+                                .baseUrl(ServiceOSms.END_POINT)
                                 .addConverterFactory(GsonConverterFactory.create())
                               //  .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                                 .build();
