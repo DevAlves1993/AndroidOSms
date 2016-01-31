@@ -15,8 +15,12 @@ public class ServiceException extends Exception
     {
         super(detailMessage);
     }
-    public static void launchException(Retrofit retrofit, Response<?> response,boolean isErrorOne) throws IOException
+    public static void launchException(Response<?> response) throws IOException
     {
       messageError = response.errorBody().string();
+    }
+    public static void launchException(Throwable throwable)
+    {
+        messageError = throwable.getMessage();
     }
 }
