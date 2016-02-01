@@ -38,6 +38,7 @@ For send a sms Call method `sendSMS(SMS sms ,Bundle bundleHeader)` of object Gen
 * The Bundle parameter is used to store the data heading returned by the apiSMS.
 
 For example:
+<<<<<<< HEAD
 
     {
 		Bundle bundleHeader = new Bundle();
@@ -88,6 +89,36 @@ For example with RxJava:
 			Token token = service.generatedToken();
 			responseSMS = service.sendSMS(sms,bundleHeader,Token);
 		}
+=======
+	
+	{
+	    Bundle bundleHeader = new Bundle();
+	    ResponseSMS responseSMS
+	    private void SendMySMS() throws IOException,ServiceException
+	    {
+	    	// the address and the senderAddress must be written on this form.
+		// the Iso code of the country concatenated to the number
+		// +XXXxxxxxxxx
+	    	String address = "+22500000000";
+	    	String senderAddress = "+22511111111";
+	    	String content = "my content"
+	    	SMS sms = new SMS(address,senderAddress,content);
+	    	GenerateService service = new GenerateService("5454656","mon code secret");
+	    	Token token = service.generatedToken();
+	    	responseSMS = service.sendSMS(sms,bundleHeader,token);
+	    }
+	    
+	    // recuperation of information of responseSMS
+	    String contentMessage = responseSMS.getOutBoundSMSMessageRequest().getOutboundSMSTextMessage();
+	    String senderAddress = responseSMS.getOutBoundSMSMessageRequest().getSenderAddress();
+	    String ResourceUrl = responseSMS.getResourceUrl();
+	    
+	    // recuperation of information of  headers
+	    String contentType = bundleHeader.get(GenerateService.CONTENT_TYPE);
+	    String contentLength = bundleHeader.get(GenerateService.CONTENT_LENGTH);
+	    String location = bundleHeader.get(GenerateService.LOCATION);
+	    String date = bundleHeader.get(GenerateService.DATE);
+>>>>>>> refs/remotes/origin/master
 	}
 
 Mark:In order to send SMS since our API, you must first of all buy a bundle SMS with Orange.In order to 
@@ -190,7 +221,7 @@ Take care to put your emulator per hour to indicate on your PC or MAC.
 ## Authors and Contributors
 In 2015, Amani Christian Cyrille Alves (@DevAlves1993) founded AndroidOSms And of developer group Akanza.
 
-##Contacts
+## Contacts
 
 * Gmail : [alvesamani@gmail.com] (mailto:alvesamani@gmail.com)
 * Twitter [@cyrilleamani] (https://twitter.com/cyrilleamani)
