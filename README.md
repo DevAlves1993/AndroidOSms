@@ -45,8 +45,8 @@ For example:
 		private void SendMySMS() throws IOException,ServiceException
 		{
 			// the address and the senderAddress must be written on this form.
-		// the Iso code of the country concatenated to the number
-		// +XXXxxxxxxxx
+			// the Iso code of the country concatenated to the number
+			// +XXXxxxxxxxx
 			String address = "+22500000000";
 			String senderAddress = "+22511111111";
 			String content = "my content"
