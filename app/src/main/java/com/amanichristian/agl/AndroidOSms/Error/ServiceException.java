@@ -2,8 +2,7 @@ package com.amanichristian.agl.AndroidOSms.Error;
 
 import java.io.IOException;
 
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Response;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 25/11/2015.

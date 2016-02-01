@@ -4,14 +4,13 @@ import android.app.Service;
 import android.os.Bundle;
 
 import com.amanichristian.agl.AndroidOSms.Error.ServiceException;
-import com.squareup.okhttp.Credentials;
-
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
+import okhttp3.Credentials;
+import retrofit2.GsonConverterFactory;
+import retrofit2.Retrofit;
+import retrofit2.RxJavaCallAdapterFactory;
 import rx.Observable;
-import rx.functions.Action0;
 import rx.functions.Action1;
-import rx.functions.Func1;
+
 
 
 /**
@@ -35,7 +34,7 @@ public class RxGenerateService
         retrofit = new Retrofit.Builder()
                                 .baseUrl(ServiceOSms.END_POINT)
                                 .addConverterFactory(GsonConverterFactory.create())
-                              //  .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                                 .build();
         codeEncodedBasic = Credentials.basic(this.id,this.secretCode);
         rxServiceOSms = retrofit.create(RxServiceOSms.class);
