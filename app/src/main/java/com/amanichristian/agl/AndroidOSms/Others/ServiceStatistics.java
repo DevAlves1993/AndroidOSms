@@ -6,9 +6,9 @@ package com.amanichristian.agl.AndroidOSms.Others;
 public class ServiceStatistics
 {
     private String country;
-    private  CountyStatistics[] countryStatistics;
+    private  CountryStatistics[] countryStatistics;
 
-    public ServiceStatistics(String country, CountyStatistics[] countryStatistics)
+    public ServiceStatistics(String country, CountryStatistics[] countryStatistics)
     {
         this.country = country;
         this.countryStatistics = countryStatistics;
@@ -18,17 +18,17 @@ public class ServiceStatistics
     {
         return country;
     }
-    public CountyStatistics[] getCountyStatistics()
+    public CountryStatistics[] getCountyStatistics()
     {
         return countryStatistics;
     }
 
-    public class CountyStatistics
+    public class CountryStatistics
     {
         private  String applicationId;
         private  String usage;
 
-        public CountyStatistics(String applicationId, String usage)
+        public CountryStatistics(String applicationId, String usage)
         {
             this.applicationId = applicationId;
             this.usage = usage;
