@@ -2,8 +2,7 @@ package com.amanichristian.agl.AndroidOSms.Error;
 
 import java.io.IOException;
 
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Response;
 
 /**
  * Created by AMANI CHRISTIAN CYRILLE on 25/11/2015.
@@ -15,8 +14,12 @@ public class ServiceException extends Exception
     {
         super(detailMessage);
     }
-    public static void launchException(Retrofit retrofit, Response<?> response,boolean isErrorOne) throws IOException
+    public static void launchException(Response<?> response) throws IOException
     {
       messageError = response.errorBody().string();
+    }
+    public static void launchException(Throwable throwable)
+    {
+        messageError = throwable.getMessage();
     }
 }

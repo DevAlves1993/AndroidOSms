@@ -7,13 +7,12 @@ import android.os.Bundle;
 
 
 import com.amanichristian.agl.AndroidOSms.Error.ServiceException;
-import com.squareup.okhttp.Credentials;
-import com.squareup.okhttp.Headers;
 import java.io.IOException;
-import retrofit.Call;
-import retrofit.Response;
-import retrofit.Retrofit;
-import retrofit.GsonConverterFactory;
+import okhttp3.Credentials;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.GsonConverterFactory;
 
 
 public final class GenerateService
@@ -36,7 +35,7 @@ public final class GenerateService
     {
         this.id = id;
         this.secretCode = secretCode;
-        codeEncodedBasic = Credentials.basic(this.id,this.secretCode);
+        codeEncodedBasic = Credentials.basic(this.id, this.secretCode);
 
         this.retrofit = new Retrofit.Builder()
             .baseUrl(ServiceOSms.END_POINT)
@@ -55,7 +54,7 @@ public final class GenerateService
             return tokenResponse.body();
         else
         {
-            ServiceException.launchException(retrofit,tokenResponse,true);
+            ServiceException.launchException(tokenResponse);
             throw new ServiceException(ServiceException.messageError);
         }
 
@@ -70,7 +69,7 @@ public final class GenerateService
         Response<ResponseSMS> responseSMS = responseSMSCall.execute();
         if(responseSMS.isSuccess())
         {
-            Headers headers = responseSMS.headers();
+            okhttp3.Headers headers = responseSMS.headers();
             bundleHeader.putString(CONTENT_TYPE,headers.get(CONTENT_TYPE));
             bundleHeader.putString(LOCATION,headers.get(LOCATION));
             bundleHeader.putString(CONTENT_LENGTH,headers.get(CONTENT_LENGTH));
@@ -79,7 +78,7 @@ public final class GenerateService
         }
         else
         {
-            ServiceException.launchException(retrofit,responseSMS,false);
+            ServiceException.launchException(responseSMS);
             throw new ServiceException(ServiceException.messageError);
         }
     }
@@ -99,7 +98,7 @@ public final class GenerateService
             return listResponse.body();
         else
         {
-            ServiceException.launchException(retrofit,listResponse,false);
+            ServiceException.launchException(listResponse);
             throw new ServiceException(ServiceException.messageError);
         }
     }
@@ -113,7 +112,7 @@ public final class GenerateService
             return statisticSMSResponse.body();
         else
         {
-            ServiceException.launchException(retrofit,statisticSMSResponse,false);
+            ServiceException.launchException(statisticSMSResponse);
             throw new ServiceException(ServiceException.messageError);
         }
     }
@@ -127,7 +126,7 @@ public final class GenerateService
             return historicPurchaseResponse.body();
         else
         {
-            ServiceException.launchException(retrofit, historicPurchaseResponse,false);
+            ServiceException.launchException(historicPurchaseResponse);
             throw new ServiceException(ServiceException.messageError);
         }
     }
