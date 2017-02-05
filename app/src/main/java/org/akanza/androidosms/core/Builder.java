@@ -44,6 +44,7 @@ abstract class Builder
 
     public void okHttpClient(OkHttpClient client)
     {
+        Builder.client = null;
         Builder.client = client;
     }
 
@@ -65,7 +66,7 @@ abstract class Builder
                 .addHeader("Authorization",basic)
                 .post(formBody)
                 .build();
-        Response response = null;
+        Response response;
         Call call = client.newCall(request);
         response = call.execute();
         if(response.isSuccessful())
