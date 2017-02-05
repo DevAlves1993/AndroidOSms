@@ -3,7 +3,7 @@ package org.akanza.androidosms.entity.apiorangeresponse;
 /**
  * Created by Christian Amani on 25/08/2016.
  */
-public class ResponseSubscription extends BaseResponse
+public class ResponseSubscription
 {
     private ReceiptSubscription deliveryReceiptSubscription;
     public ResponseSubscription()

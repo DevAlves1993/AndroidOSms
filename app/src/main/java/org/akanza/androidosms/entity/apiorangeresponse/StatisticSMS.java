@@ -1,11 +1,11 @@
 package org.akanza.androidosms.entity.apiorangeresponse;
 
-import org.akanza.models.PartnerStatistics;
+import org.akanza.androidosms.entity.PartnerStatistics;
 
 /**
  * Created by Christian Amani on 15/12/2015.
  */
-public class StatisticSMS extends BaseResponse
+public class StatisticSMS
 {
     private PartnerStatistics partnerStatistics;
 

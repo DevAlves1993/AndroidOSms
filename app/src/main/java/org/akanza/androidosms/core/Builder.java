@@ -25,7 +25,7 @@ import okhttp3.Response;
  * Created by user on 02/02/2017.
  */
 
-public abstract class Builder
+abstract class Builder
 {
     protected static OkHttpClient client = initHttpClient();
 

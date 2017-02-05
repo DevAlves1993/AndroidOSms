@@ -5,7 +5,7 @@ import org.akanza.androidosms.entity.PurchaseOrder;
 /**
  * Created by Christian Amani on 15/12/2015.
  */
-public class HistoricPurchase extends BaseResponse
+public class HistoricPurchase
 {
     private PurchaseOrder[] purchaseOrders;
 

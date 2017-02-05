@@ -1,11 +1,11 @@
 package org.akanza.androidosms.entity.apiorangeresponse;
 
-import org.akanza.models.PartnerContracts;
+import org.akanza.androidosms.entity.PartnerContracts;
 
 /**
  * Created by Christian Amani on 15/12/2015.
  */
-public class ContractsSMS extends BaseResponse
+public class ContractsSMS
 {
     private PartnerContracts partnerContracts;
 

@@ -7,7 +7,7 @@ package org.akanza.androidosms.entity.apiorangeresponse;
  */
 
 
-public class Token extends BaseResponse
+public class Token
 {
     /** The type of the token issued.*/
     private String tokenType;

@@ -3,9 +3,9 @@ package org.akanza.androidosms.core;
 import org.akanza.androidosms.core.exception.HttpApiOrangeException;
 import org.akanza.androidosms.entity.OrangeSMS;
 import org.akanza.androidosms.entity.Token;
-import org.akanza.androidosms.entity.apiorangeresponse.BaseResponse;
 import org.akanza.androidosms.entity.apiorangeresponse.ContractsSMS;
 import org.akanza.androidosms.entity.apiorangeresponse.HistoricPurchase;
+import org.akanza.androidosms.entity.apiorangeresponse.ResponseSMS;
 import org.akanza.androidosms.entity.apiorangeresponse.ResponseSubscription;
 import org.akanza.androidosms.entity.apiorangeresponse.StatisticSMS;
 
@@ -35,7 +35,7 @@ public class AsyncOSms implements HttpApiOrange
     }
 
     @Override
-    public BaseResponse sendSms(OrangeSMS sms) throws IOException, HttpApiOrangeException
+    public ResponseSMS sendSms(OrangeSMS sms) throws IOException, HttpApiOrangeException
     {
         return null;
     }
