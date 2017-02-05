@@ -1,6 +1,6 @@
 package org.akanza.androidosms.entity.apiorangeresponse;
 
-import org.akanza.models.PurchaseOrder;
+import org.akanza.androidosms.entity.PurchaseOrder;
 
 /**
  * Created by Christian Amani on 15/12/2015.

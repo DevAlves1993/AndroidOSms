@@ -2,7 +2,7 @@ package org.akanza.androidosms.entity.apiorangeresponse;
 
 /**
  * Created by Christian Amani on 24/10/2015.
- * <p>Token it is object which your permit to access a API SMS.</p>
+ * <p>Token it is object which your permit to access a API OrangeSMS.</p>
  * @Author Christian Amani
  */
 
