@@ -1,5 +1,7 @@
 package org.akanza.androidosms.core;
 
+import com.squareup.moshi.Moshi;
+
 import org.akanza.androidosms.core.exception.HttpApiOrangeException;
 import org.akanza.androidosms.entity.OrangeSMS;
 import org.akanza.androidosms.entity.Token;
@@ -21,12 +23,14 @@ public class AsyncOSms implements HttpApiOrange
 {
     private OkHttpClient client;
     private Token token;
-
+    private Moshi moshi;
 
     private AsyncOSms(Token token,OkHttpClient client)
     {
         this.token = token;
         this.client = client;
+        this.moshi = new Moshi.Builder()
+                .build();
     }
 
     public Token getToken()
@@ -41,7 +45,7 @@ public class AsyncOSms implements HttpApiOrange
     }
 
     @Override
-    public ResponseSubscription sendSubscription() throws IOException, HttpApiOrangeException
+    public ResponseSubscription sendSubscription(String senderAddress) throws IOException, HttpApiOrangeException
     {
         return null;
     }
@@ -63,6 +67,7 @@ public class AsyncOSms implements HttpApiOrange
     {
         return null;
     }
+
 
     public static class BuilderAsyncOSms extends Builder
     {

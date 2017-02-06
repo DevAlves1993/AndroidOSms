@@ -10,6 +10,8 @@ import org.akanza.androidosms.entity.apiorangeresponse.StatisticSMS;
 
 import java.io.IOException;
 
+import okhttp3.MediaType;
+
 
 /**
  * Created by user on 05/02/2017.
@@ -17,8 +19,13 @@ import java.io.IOException;
 
 interface HttpApiOrange
 {
+    String SCHEME = "http";
+    String HOST = "api.orange.com";
+    String VERSION_API = "v1";
+    String HEADER_AUTHORISATION = "Authorization";
+    MediaType JSON_MEDIA = MediaType.parse("application/json;charset=utf-8");
     ResponseSMS sendSms(OrangeSMS sms) throws IOException,HttpApiOrangeException;
-    ResponseSubscription sendSubscription() throws IOException,HttpApiOrangeException;
+    ResponseSubscription sendSubscription(String senderAddress) throws IOException,HttpApiOrangeException;
     StatisticSMS obtainStatisticSMS() throws IOException,HttpApiOrangeException;
     ContractsSMS obtainsContractsSMS() throws IOException,HttpApiOrangeException;
     HistoricPurchase obtainHistoricSMS() throws IOException,HttpApiOrangeException;
