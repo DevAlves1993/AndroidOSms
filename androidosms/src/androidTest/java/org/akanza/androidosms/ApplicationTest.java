@@ -1,4 +1,4 @@
-package com.akanza.androidosms;
+package org.akanza.androidosms;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

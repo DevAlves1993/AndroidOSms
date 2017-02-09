@@ -245,7 +245,7 @@ public class OSms implements HttpApiOrange
     public static class BuilderOSms extends Builder
     {
         @Override
-        public HttpApiOrange build() throws IOException, HttpApiOrangeException
+        public OSms build() throws IOException, HttpApiOrangeException
         {
             if(id == null || secretCode == null)
             {
@@ -253,6 +253,28 @@ public class OSms implements HttpApiOrange
                 return new OSms(token,Builder.client);
             }
             return null;
+        }
+
+        @Override
+        public BuilderOSms id(String id)
+        {
+            this.id = id;
+            return this;
+        }
+
+        @Override
+        public BuilderOSms secretCode(String secretCode)
+        {
+            this.secretCode = secretCode;
+            return this;
+        }
+
+        @Override
+        public BuilderOSms okHttpClient(OkHttpClient client)
+        {
+            Builder.client = null;
+            Builder.client = client;
+            return this;
         }
     }
 }

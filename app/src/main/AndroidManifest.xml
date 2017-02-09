@@ -15,6 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".HistoricActivity">
+        </activity>
+        <activity android:name=".ContractActivity">
+        </activity>
+        <activity android:name=".StatisticActivity">
+        </activity>
     </application>
 
 </manifest>

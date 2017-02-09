@@ -32,20 +32,23 @@ abstract class Builder
     protected String id;
     protected String secretCode;
 
-    public void id(String id)
+    public Builder id(String id)
     {
         this.id = id;
+        return this;
     }
 
-    public void secretCode(String secretCode)
+    public Builder secretCode(String secretCode)
     {
         this.secretCode = secretCode;
+        return this;
     }
 
-    public void okHttpClient(OkHttpClient client)
+    public Builder okHttpClient(OkHttpClient client)
     {
         Builder.client = null;
         Builder.client = client;
+        return this;
     }
 
     protected Token obtainsToken() throws IOException, HttpApiOrangeException
