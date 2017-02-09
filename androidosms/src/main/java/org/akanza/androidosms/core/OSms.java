@@ -56,7 +56,7 @@ public class OSms implements HttpApiOrange
                 .addPathSegment("smsmessaging")
                 .addPathSegment(VERSION_API)
                 .addPathSegment("outbound")
-                .addEncodedPathSegment(sms.getOutBoundSMSMessageRequest().getSenderAddress())
+                .addEncodedPathSegment(sms.getOutboundSMSMessageRequest().getSenderAddress())
                 .addPathSegment("requests")
                 .build();
         JsonAdapter<OrangeSMS> orangeSMSJsonAdapter = moshi.adapter(OrangeSMS.class);
@@ -247,7 +247,7 @@ public class OSms implements HttpApiOrange
         @Override
         public OSms build() throws IOException, HttpApiOrangeException
         {
-            if(id == null || secretCode == null)
+            if(id != null && secretCode != null)
             {
                 Token token = obtainsToken();
                 return new OSms(token,Builder.client);

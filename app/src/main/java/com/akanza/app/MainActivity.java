@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.akanza.androidosms.core.OSms;
 import org.akanza.androidosms.core.exception.HttpApiOrangeException;
@@ -75,6 +76,12 @@ public class MainActivity extends AppCompatActivity
                     ResponseError error = e.getError();
                 }
                 return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid)
+            {
+                Toast.makeText(MainActivity.this,"Osms",Toast.LENGTH_SHORT).show();
             }
         }.execute((Void)null);
     }

@@ -6,7 +6,7 @@ package org.akanza.androidosms.entity;
 public class ServiceStatistic
 {
     private String country;
-    private  CountyStatistic[] countryStatistics;
+    private CountyStatistic[] countryStatistics;
 
     public ServiceStatistic()
     {}

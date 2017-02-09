@@ -5,7 +5,7 @@ package org.akanza.androidosms.entity;
  */
 public class OrangeSMS
 {
-    private SMSMessage outBoundSMSMessageRequest;
+    private SMSMessage outboundSMSMessageRequest;
 
 
     /**
@@ -15,39 +15,39 @@ public class OrangeSMS
      */
     public OrangeSMS(String address , String senderAddress, String content)
     {
-        outBoundSMSMessageRequest = new SMSMessage(address,senderAddress,content);
+        outboundSMSMessageRequest = new SMSMessage(address,senderAddress,content);
     }
 
-    public SMSMessage getOutBoundSMSMessageRequest()
+    public SMSMessage getOutboundSMSMessageRequest()
     {
-        return outBoundSMSMessageRequest;
+        return outboundSMSMessageRequest;
     }
 
-    public void setOutBoundSMSMessageRequest(SMSMessage outBoundSMSMessageRequest)
+    public void setOutboundSMSMessageRequest(SMSMessage outboundSMSMessageRequest)
     {
-        this.outBoundSMSMessageRequest = outBoundSMSMessageRequest;
+        this.outboundSMSMessageRequest = outboundSMSMessageRequest;
     }
 
 
     /**
      * <p>Class which contains a elements a base of OrangeSMS</p>
      */
-    public class SMSMessage
+    public static class SMSMessage
     {
         private String address;
         private String senderAddress;
-        private SMSContent message;
+        private SMSContent outboundSMSTextMessage;
 
         public SMSMessage(String address,String senderAddress,String content)
         {
             this.address ="tel:"+address;
             this.senderAddress ="tel:"+ senderAddress;
-            this.message = new SMSContent(content);
+            this.outboundSMSTextMessage = new SMSContent(content);
         }
 
-        public String getMessage()
+        public String getOutboundSMSTextMessage()
         {
-            return message.getMessage();
+            return outboundSMSTextMessage.getMessage();
         }
 
         public void setAddress(String address)
@@ -65,9 +65,9 @@ public class OrangeSMS
             this.senderAddress = senderAddress;
         }
 
-        public void setMessage(String content)
+        public void setOutboundSMSTextMessage(String content)
         {
-            message.setMessage(content);
+            outboundSMSTextMessage.setMessage(content);
         }
 
         public String getAddress()
@@ -75,7 +75,7 @@ public class OrangeSMS
             return address;
         }
 
-        private class SMSContent
+        public static class SMSContent
         {
             private String message;
             public SMSContent(String message)
