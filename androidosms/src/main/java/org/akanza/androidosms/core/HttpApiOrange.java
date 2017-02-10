@@ -25,7 +25,10 @@ interface HttpApiOrange
     String HEADER_AUTHORISATION = "Authorization";
     MediaType JSON_MEDIA = MediaType.parse("application/json;charset=utf-8");
     ResponseSMS sendSms(OrangeSMS sms) throws IOException,HttpApiOrangeException;
-    ResponseSubscription sendSubscription(String senderAddress) throws IOException,HttpApiOrangeException;
+    ResponseSubscription subscriptionApi(String senderAddress,
+                                         ResponseSubscription subscription) throws IOException,HttpApiOrangeException;
+    ResponseSubscription checkSubscriptionApi(String subId) throws IOException,HttpApiOrangeException;
+    void unSubscriptionApi(String senderAddress,String subId) throws IOException,HttpApiOrangeException;
     StatisticSMS obtainStatisticSMS() throws IOException,HttpApiOrangeException;
     ContractsSMS obtainsContractsSMS() throws IOException,HttpApiOrangeException;
     HistoricPurchase obtainHistoricSMS() throws IOException,HttpApiOrangeException;

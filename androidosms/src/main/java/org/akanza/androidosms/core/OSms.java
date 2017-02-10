@@ -59,12 +59,12 @@ public class OSms implements HttpApiOrange
                 .addEncodedPathSegment(sms.getOutboundSMSMessageRequest().getSenderAddress())
                 .addPathSegment("requests")
                 .build();
-        JsonAdapter<OrangeSMS> orangeSMSJsonAdapter = moshi.adapter(OrangeSMS.class);
+        JsonAdapter<OrangeSMS> adapter = moshi.adapter(OrangeSMS.class);
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader(HEADER_AUTHORISATION,token.getAccessToken())
+                .addHeader(HEADER_AUTHORISATION,token.createAccess())
                 .addHeader("Content-Type","application/json")
-                .post(RequestBody.create(JSON_MEDIA,orangeSMSJsonAdapter.toJson(sms)))
+                .post(RequestBody.create(JSON_MEDIA,adapter.toJson(sms)))
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
@@ -80,7 +80,8 @@ public class OSms implements HttpApiOrange
     }
 
     @Override
-    public ResponseSubscription sendSubscription(String senderAddress) throws IOException, HttpApiOrangeException
+    public ResponseSubscription subscriptionApi(String senderAddress
+            ,ResponseSubscription subscription) throws IOException, HttpApiOrangeException
     {
         HttpUrl httpUrl = new HttpUrl.Builder()
                 .scheme(SCHEME)
@@ -91,8 +92,11 @@ public class OSms implements HttpApiOrange
                 .addPathSegment(senderAddress)
                 .addPathSegment("subscriptions")
                 .build();
+        JsonAdapter<ResponseSubscription> adapter = this.moshi.adapter(ResponseSubscription.class);
         Request request = new Request.Builder()
                 .url(httpUrl)
+                .addHeader(HEADER_AUTHORISATION,token.createAccess())
+                .post(RequestBody.create(JSON_MEDIA,adapter.toJson(subscription)))
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
@@ -108,6 +112,19 @@ public class OSms implements HttpApiOrange
     }
 
     @Override
+    public ResponseSubscription checkSubscriptionApi(String subId) throws IOException, HttpApiOrangeException
+    {
+        // TODO : implement later
+        return null;
+    }
+
+    @Override
+    public void unSubscriptionApi(String senderAddress, String subId) throws IOException, HttpApiOrangeException
+    {
+        // TODO : implement later
+    }
+
+    @Override
     public StatisticSMS obtainStatisticSMS() throws IOException, HttpApiOrangeException
     {
         HttpUrl url = new HttpUrl.Builder()
@@ -120,7 +137,7 @@ public class OSms implements HttpApiOrange
                 .build();
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader(HEADER_AUTHORISATION,token.getAccessToken())
+                .addHeader(HEADER_AUTHORISATION,token.createAccess())
                 .get()
                 .build();
         Call call = client.newCall(request);
@@ -149,7 +166,7 @@ public class OSms implements HttpApiOrange
                 .build();
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader(HEADER_AUTHORISATION,token.getAccessToken())
+                .addHeader(HEADER_AUTHORISATION,token.createAccess())
                 .get()
                 .build();
         Call call = client.newCall(request);
@@ -178,7 +195,7 @@ public class OSms implements HttpApiOrange
                 .build();
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader(HEADER_AUTHORISATION,token.getAccessToken())
+                .addHeader(HEADER_AUTHORISATION,token.createAccess())
                 .get()
                 .build();
         Call call = client.newCall(request);

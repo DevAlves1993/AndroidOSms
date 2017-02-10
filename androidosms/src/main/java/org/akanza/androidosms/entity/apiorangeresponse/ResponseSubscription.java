@@ -9,6 +9,12 @@ public class ResponseSubscription
     public ResponseSubscription()
     {}
 
+    public ResponseSubscription(String partnerHost)
+    {
+        ReceiptSubscription.CallbackRef callbackRef = new ReceiptSubscription
+                .CallbackRef(partnerHost);
+    }
+
     public ReceiptSubscription getDeliveryReceiptSubscription()
     {
         return deliveryReceiptSubscription;
@@ -51,6 +57,11 @@ public class ResponseSubscription
             private String notifyURL;
             public CallbackRef()
             {}
+
+            public CallbackRef(String partnerHost)
+            {
+                notifyURL = "https://"+partnerHost+"/orange/smsdr.php";
+            }
 
             public void setNotifyURL(String notifyURL)
             {

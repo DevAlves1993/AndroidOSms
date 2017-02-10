@@ -83,6 +83,15 @@
         </LinearLayout>
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/edtHost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Host"
+        android:textAlignment="viewStart"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

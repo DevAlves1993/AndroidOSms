@@ -2,8 +2,9 @@ package com.akanza.app;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,9 +25,11 @@ public class MainActivity extends AppCompatActivity
     public final static String ID = "wcyuIqWa3Wj9S8kAZf9ALlHMZmVm34YL"; // TODO : Insert your Orange Id
     public final static String SECRET_CODE = "8FCqRkFbPm6uiENY"; // TODO : Insert your Secret code
     private final String ADDRESS = "+22589349055"; // TODO : Insert your number phone
+    private final String TAG = MainActivity.class.getName();
 
     private EditText edtText;
     private EditText edtNumberPhone;
+    private EditText edtHost;
     private TextView txtSenderAddress;
     private TextView txtSenderName;
     private TextView txtResourceUrl;
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     {
         edtText = (EditText) findViewById(R.id.edtText);
         edtNumberPhone = (EditText) findViewById(R.id.edtNumberPhone);
+        edtHost = (EditText) findViewById(R.id.edtHost);
         txtSenderAddress = (TextView) findViewById(R.id.txtSenderAddress);
         txtSenderName = (TextView) findViewById(R.id.txtSenderName);
         txtResourceUrl = (TextView) findViewById(R.id.txtResourceUrl);
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity
                 catch (HttpApiOrangeException e)
                 {
                     ResponseError error = e.getError();
+                    logResponseError(error,error.getCode());
                 }
                 return null;
             }
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity
                 {
                     e.printStackTrace();
                     ResponseError error = e.getError();
+                    logResponseError(error,error.getCode());
                 }
                 return responseSMS;
             }
@@ -148,50 +154,62 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void sendSubscription(View view)
+    private void logResponseError(ResponseError error, int code)
+    {
+        Log.e(TAG,"Error code : "+ String.valueOf(code));
+        Log.i(TAG,"Message error : "+error.getMessage());
+        Log.i(TAG,"Description : " +error.getDescription());
+    }
+
+    public void sendSubscription(View view) // TODO : delete method later
     {
         String s = edtNumberPhone.getText().toString();
-        if(!s.startsWith("+225"))
-            s = "+225"+s;
-        final String numberPhone = s;
-        AsyncTask<Void,Void,ResponseSubscription> asyncTask = new AsyncTask<Void, Void, ResponseSubscription>()
+        final String host = edtHost.getText()
+                .toString();
+        if(!host.isEmpty())
         {
-            @Override
-            protected ResponseSubscription doInBackground(Void... params)
+            if(!s.startsWith("+225"))
+                s = "+225"+s;
+            final String numberPhone = s;
+            AsyncTask<Void,Void,ResponseSubscription> asyncTask = new AsyncTask<Void, Void, ResponseSubscription>()
             {
-                ResponseSubscription subscription = null;
-                try
+                @Override
+                protected ResponseSubscription doInBackground(Void... params)
                 {
-                    subscription = oSms.sendSubscription(numberPhone);
+                    ResponseSubscription subscription = new ResponseSubscription(host);
+                    try
+                    {
+                        subscription = oSms.subscriptionApi(numberPhone,subscription);
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch (HttpApiOrangeException e)
+                    {
+                        e.printStackTrace();
+                        ResponseError error = e.getError();
+                    }
+                    return subscription;
                 }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-                catch (HttpApiOrangeException e)
-                {
-                    e.printStackTrace();
-                    ResponseError error = e.getError();
-                }
-                return subscription;
-            }
 
-            @Override
-            protected void onPostExecute(ResponseSubscription responseSubscription)
-            {
-                if(responseSubscription != null)
+                @Override
+                protected void onPostExecute(ResponseSubscription responseSubscription)
                 {
-                    ResponseSubscription.ReceiptSubscription deliveryReceiptSubscription = responseSubscription
-                            .getDeliveryReceiptSubscription();
-                    ResponseSubscription.ReceiptSubscription.CallbackRef callbackReference = deliveryReceiptSubscription
-                            .getCallbackReference();
-                    String resourceURL = deliveryReceiptSubscription.getResourceURL();
-                    String notifyUrl = callbackReference.getNotifyURL();
-                    txtResourceUrl.setText(resourceURL);
-                    txtNotifyUrl.setText(notifyUrl);
+                    if(responseSubscription != null)
+                    {
+                        ResponseSubscription.ReceiptSubscription deliveryReceiptSubscription = responseSubscription
+                                .getDeliveryReceiptSubscription();
+                        ResponseSubscription.ReceiptSubscription.CallbackRef callbackReference = deliveryReceiptSubscription
+                                .getCallbackReference();
+                        String resourceURL = deliveryReceiptSubscription.getResourceURL();
+                        String notifyUrl = callbackReference.getNotifyURL();
+                        txtResourceUrl.setText(resourceURL);
+                        txtNotifyUrl.setText(notifyUrl);
+                    }
                 }
-            }
-        }.execute((Void)null);
+            }.execute((Void)null);
+        }
     }
 
 }

@@ -36,7 +36,9 @@ public class OrangeSMS
     {
         private String address;
         private String senderAddress;
+        private String senderName; // TODO verify serialisation
         private SMSContent outboundSMSTextMessage;
+        private String resourceURL; // TODO : verify serialisation
 
         public SMSMessage(String address,String senderAddress,String content)
         {
